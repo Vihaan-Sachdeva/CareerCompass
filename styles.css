@@ -1,0 +1,180 @@
+:root {
+  --bg: #070b1a;
+  --bg-2: #111a35;
+  --text: #ecf1ff;
+  --muted: #b8c1dc;
+  --accent: #7c5cff;
+  --accent-2: #2ec5ff;
+  --card: rgba(15, 24, 52, 0.68);
+  --border: rgba(255, 255, 255, 0.12);
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 15% 15%, #18295c 0%, var(--bg) 42%),
+    linear-gradient(120deg, #060814 0%, var(--bg-2) 80%);
+  position: relative;
+}
+
+.background-glow {
+  position: fixed;
+  width: 45rem;
+  height: 45rem;
+  top: -15rem;
+  right: -10rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(46, 197, 255, 0.3) 0%, rgba(46, 197, 255, 0) 65%);
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.page {
+  width: min(1050px, 92%);
+  margin: 2rem auto 3rem;
+  display: grid;
+  gap: 1.4rem;
+}
+
+.card {
+  backdrop-filter: blur(10px);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1.1rem;
+  box-shadow: var(--shadow);
+  padding: 1.3rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 65ch;
+}
+
+.eyebrow {
+  margin: 0 0 0.3rem;
+  color: #d0d8ff;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.section-head h2 {
+  margin: 0;
+}
+
+.section-head p {
+  margin-top: 0.35rem;
+  color: var(--muted);
+}
+
+.input-label {
+  font-weight: 600;
+}
+
+select,
+button {
+  width: 100%;
+  padding: 0.78rem 0.9rem;
+  margin-top: 0.45rem;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(14, 20, 40, 0.9);
+  color: var(--text);
+  font-size: 0.97rem;
+}
+
+select:focus,
+button:focus {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+.career-card {
+  margin-top: 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(8, 12, 26, 0.72);
+  padding: 1rem;
+}
+
+.career-card h3 {
+  margin: 0 0 0.4rem;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.75rem 0;
+}
+
+.tag {
+  border: 1px solid rgba(124, 92, 255, 0.5);
+  background: rgba(124, 92, 255, 0.18);
+  color: #dfd8ff;
+  padding: 0.26rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+}
+
+.question {
+  margin-bottom: 0.95rem;
+}
+
+.question label {
+  font-weight: 600;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  margin-top: 0.2rem;
+  background: linear-gradient(130deg, var(--accent), var(--accent-2));
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.quiz-results {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  background: rgba(10, 17, 35, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.quiz-results ul {
+  padding-left: 1rem;
+  margin-bottom: 0;
+}
+
+.quiz-results li + li {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 900px) {
+  .page {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero {
+    grid-column: 1 / -1;
+  }
+}
