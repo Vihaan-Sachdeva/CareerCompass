@@ -225,10 +225,15 @@ const categoryLabel = Object.fromEntries(
 );
 
 const selectEl = document.getElementById("careerSelect");
+const careerSearchEl = document.getElementById("careerSearch");
+const categoryFilterEl = document.getElementById("categoryFilter");
+const careerSearchStatusEl = document.getElementById("careerSearchStatus");
 const careerCardEl = document.getElementById("careerCard");
 const careerCountEl = document.getElementById("careerCount");
 const quizForm = document.getElementById("quizForm");
 const quizResultsEl = document.getElementById("quizResults");
+
+let filteredCareers = [...careers];
 
 function createBulletList(items) {
   return `<ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
@@ -262,26 +267,65 @@ function renderCareer(career) {
   `;
 }
 
-function populateCareers() {
+function populateCategoryFilter() {
+  const categories = Object.entries(categoryLabel);
+  categories.forEach(([value, label]) => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = label;
+    categoryFilterEl.appendChild(option);
+  });
+}
+
+function populateCareerSelect(list) {
   selectEl.innerHTML = "";
-  careers.forEach((career, index) => {
+
+  list.forEach((career, index) => {
     const opt = document.createElement("option");
     opt.value = String(index);
     opt.textContent = `${career.title} — ${categoryLabel[career.category]}`;
     selectEl.appendChild(opt);
   });
+}
+
+function applyExplorerFilters() {
+  const query = careerSearchEl.value.trim().toLowerCase();
+  const category = categoryFilterEl.value;
+
+  filteredCareers = careers.filter((career) => {
+    const matchesCategory = category === "all" || career.category === category;
+    const searchableText = `${career.title} ${career.category} ${categoryLabel[career.category]} ${career.focus}`.toLowerCase();
+    const matchesQuery = query === "" || searchableText.includes(query);
+    return matchesCategory && matchesQuery;
+  });
+
+  populateCareerSelect(filteredCareers);
 
   if (careerCountEl) {
     careerCountEl.textContent = `${careers.length} careers available`;
   }
 
-  renderCareer(careers[0]);
+  if (filteredCareers.length > 0) {
+    careerSearchStatusEl.textContent = `Showing ${filteredCareers.length} matching careers.`;
+    renderCareer(filteredCareers[0]);
+    selectEl.disabled = false;
+  } else {
+    careerSearchStatusEl.textContent = "No careers match your current search/filter. Try a different keyword or category.";
+    selectEl.disabled = true;
+    careerCardEl.innerHTML = `
+      <h3>No matching careers found</h3>
+      <p>Try clearing the search box or switching back to <strong>All categories</strong> to see more options.</p>
+    `;
+  }
 }
 
 selectEl.addEventListener("change", (e) => {
-  const picked = careers[Number(e.target.value)];
+  const picked = filteredCareers[Number(e.target.value)];
   if (picked) renderCareer(picked);
 });
+
+careerSearchEl.addEventListener("input", applyExplorerFilters);
+categoryFilterEl.addEventListener("change", applyExplorerFilters);
 
 const recommendationRules = {
   technology: ["Software Developer", "Data Engineer", "Cybersecurity Analyst", "Cloud Engineer", "UX Engineer"],
@@ -387,4 +431,5 @@ quizForm.addEventListener("submit", (event) => {
   `;
 });
 
-populateCareers();
+populateCategoryFilter();
+applyExplorerFilters();

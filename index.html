@@ -40,8 +40,27 @@
           </p>
         </div>
 
+        <div class="explorer-controls">
+          <div>
+            <label for="careerSearch" class="input-label">Search careers</label>
+            <input
+              id="careerSearch"
+              type="search"
+              placeholder="Type a job title, category, or keyword..."
+              aria-label="Search careers"
+            />
+          </div>
+          <div>
+            <label for="categoryFilter" class="input-label">Filter by category</label>
+            <select id="categoryFilter" aria-label="Filter careers by category">
+              <option value="all">All categories</option>
+            </select>
+          </div>
+        </div>
+
         <label for="careerSelect" class="input-label">Select a career</label>
         <select id="careerSelect" aria-label="Select a career"></select>
+        <p id="careerSearchStatus" class="search-status" aria-live="polite"></p>
 
         <article id="careerCard" class="career-card" aria-live="polite"></article>
       </section>

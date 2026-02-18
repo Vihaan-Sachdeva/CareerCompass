@@ -120,6 +120,35 @@ button:focus {
   outline-offset: 2px;
 }
 
+
+input[type="search"] {
+  width: 100%;
+  padding: 0.78rem 0.9rem;
+  margin-top: 0.45rem;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(14, 20, 40, 0.9);
+  color: var(--text);
+  font-size: 0.97rem;
+}
+
+input[type="search"]:focus {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+.explorer-controls {
+  display: grid;
+  gap: 0.8rem;
+  margin-bottom: 0.35rem;
+}
+
+.search-status {
+  margin: 0.7rem 0 0;
+  color: #cdd8fb;
+  font-size: 0.9rem;
+}
+
 .career-card {
   margin-top: 1rem;
   border-radius: 0.9rem;
@@ -201,6 +230,12 @@ button:hover {
 .quiz-tip {
   color: #c5d4ff;
   font-size: 0.92rem;
+}
+
+@media (min-width: 760px) {
+  .explorer-controls {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (min-width: 980px) {
