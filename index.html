@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CareerCompass | Explore Future Careers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-glow"></div>
+    <main class="page">
+      <header class="hero card">
+        <p class="eyebrow">Student Career Guidance</p>
+        <h1>CareerCompass</h1>
+        <p>
+          Discover 130+ careers, compare required skills, and get personalized
+          suggestions from a quick interest quiz. This version includes much
+          deeper role details so students can make informed choices.
+        </p>
+        <div class="hero-stats">
+          <span id="careerCount" class="pill">0 careers available</span>
+          <span class="pill">Detailed role breakdowns</span>
+          <span class="pill">Quick student action plans</span>
+        </div>
+      </header>
+
+      <section class="card explorer">
+        <div class="section-head">
+          <h2>Career Explorer</h2>
+          <p>
+            Pick any job from the dropdown to view an expanded profile: overview,
+            responsibilities, education path, work environment, skill roadmap,
+            and practical next steps for students.
+          </p>
+        </div>
+
+        <div class="explorer-controls">
+          <div>
+            <label for="careerSearch" class="input-label">Search careers</label>
+            <input
+              id="careerSearch"
+              type="search"
+              placeholder="Type a job title, category, or keyword..."
+              aria-label="Search careers"
+            />
+          </div>
+          <div>
+            <label for="categoryFilter" class="input-label">Filter by category</label>
+            <select id="categoryFilter" aria-label="Filter careers by category">
+              <option value="all">All categories</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="careerSelect" class="input-label">Select a career</label>
+        <select id="careerSelect" aria-label="Select a career"></select>
+        <p id="careerSearchStatus" class="search-status" aria-live="polite"></p>
+
+        <article id="careerCard" class="career-card" aria-live="polite"></article>
+      </section>
+
+      <section class="card quiz">
+        <div class="section-head">
+          <h2>Career Match Quiz</h2>
+          <p>
+            Answer 5 quick questions and we'll recommend careers aligned with
+            your interests and working style.
+          </p>
+        </div>
+
+        <form id="quizForm">
+          <div class="question">
+            <label for="q1">What kind of tasks excite you most?</label>
+            <select id="q1" required>
+              <option value="" disabled selected>Choose one</option>
+              <option value="technology">Building apps, systems, or tools</option>
+              <option value="science">Experimenting and analyzing data</option>
+              <option value="creative">Designing, writing, or storytelling</option>
+              <option value="business">Planning, leading, and strategy</option>
+              <option value="service">Helping and supporting people</option>
+            </select>
+          </div>
+
+          <div class="question">
+            <label for="q2">Preferred work environment?</label>
+            <select id="q2" required>
+              <option value="" disabled selected>Choose one</option>
+              <option value="office">Office or corporate setting</option>
+              <option value="remote">Remote/flexible digital work</option>
+              <option value="lab">Lab, clinic, or research setting</option>
+              <option value="field">On-site, outdoors, or in the field</option>
+              <option value="studio">Studio, classroom, or collaborative space</option>
+            </select>
+          </div>
+
+          <div class="question">
+            <label for="q3">Which school subjects do you enjoy most?</label>
+            <select id="q3" required>
+              <option value="" disabled selected>Choose one</option>
+              <option value="math">Math/Computer Science</option>
+              <option value="science">Biology/Chemistry/Physics</option>
+              <option value="humanities">History/Languages/Social Studies</option>
+              <option value="arts">Art/Media/Music</option>
+              <option value="economics">Business/Economics</option>
+            </select>
+          </div>
+
+          <div class="question">
+            <label for="q4">How much social interaction do you prefer?</label>
+            <select id="q4" required>
+              <option value="" disabled selected>Choose one</option>
+              <option value="high">High — frequent teamwork and communication</option>
+              <option value="medium">Medium — a balance of solo and team work</option>
+              <option value="low">Lower — focused independent work</option>
+            </select>
+          </div>
+
+          <div class="question">
+            <label for="q5">What impact do you want your work to have?</label>
+            <select id="q5" required>
+              <option value="" disabled selected>Choose one</option>
+              <option value="innovation">Drive innovation and new products</option>
+              <option value="health">Improve health and wellbeing</option>
+              <option value="education">Teach and guide others</option>
+              <option value="community">Strengthen communities and social systems</option>
+              <option value="growth">Grow businesses and organizations</option>
+            </select>
+          </div>
+
+          <button type="submit">Get My Matches</button>
+        </form>
+
+        <div id="quizResults" class="quiz-results" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
